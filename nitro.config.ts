@@ -3,6 +3,8 @@ export default defineNitroConfig({
   srcDir: "server",
   runtimeConfig: 
   {
-    brevoSecret: ""
+    brevoSecret: "",
+    email: "",
+    name:""
   }
 });

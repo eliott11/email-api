@@ -21,6 +21,4 @@ Don't forget to change the variables in the ./server/routes/index.post.ts file i
 `Nitro` `Zod`
 
 ## Resources
-https://nitro.unjs.io/guide
-https://github.com/getbrevo/brevo-node
-https://zod.dev/
+https://nitro.unjs.io/guide | https://github.com/getbrevo/brevo-node | https://zod.dev/

@@ -30,12 +30,14 @@ export default eventHandler(async(event) => {
     
   }).parse(data)));
 
+  const email = useRuntimeConfig().email;
+  const name = useRuntimeConfig().name;
   let sendSmtpEmail = new SendSmtpEmail();
   sendSmtpEmail.subject = subject;
   sendSmtpEmail.htmlContent = content;
-  sendSmtpEmail.sender = { "email": "eliottdemont@gmail.com", "name": "Eliott" };
+  sendSmtpEmail.sender = { "email": email, "name": name };
   sendSmtpEmail.to = [
-    { "email": "eliottdemont@gmail.com", "name": "Eliott" }
+    { "email": email, "name": name }
   ];
   sendSmtpEmail.replyTo = from;
 
