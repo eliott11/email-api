@@ -20,28 +20,30 @@ export default eventHandler(async(event) => {
   if (didHandleCors) {
     return;
   }
-  const {subject, content, from} = await readValidatedBody(event, (data: any) => (z.object({
-    subject: z.string(),
-    content: z.string(),
-    from: z.object({
-      name: z.string(), 
-      email: z.string().email()
-    })
-    
-  }).parse(data)));
-
-  const email = useRuntimeConfig().email;
-  const name = useRuntimeConfig().name;
-  let sendSmtpEmail = new SendSmtpEmail();
-  sendSmtpEmail.subject = subject;
-  sendSmtpEmail.htmlContent = content;
-  sendSmtpEmail.sender = { "email": email, "name": name };
-  sendSmtpEmail.to = [
-    { "email": email, "name": name }
-  ];
-  sendSmtpEmail.replyTo = from;
-
+  
   try {
+    const {subject, content, from} = await readValidatedBody(event, (data: any) => (z.object({
+      subject: z.string(),
+      content: z.string(),
+      from: z.object({
+        name: z.string(), 
+        email: z.string().email()
+      })
+      
+    }).parse(data)));
+
+    const email = useRuntimeConfig().email;
+    const name = useRuntimeConfig().name;
+    let sendSmtpEmail = new SendSmtpEmail();
+    sendSmtpEmail.subject = subject;
+    sendSmtpEmail.htmlContent = content;
+    sendSmtpEmail.sender = { "email": email, "name": name };
+    sendSmtpEmail.to = [
+      { "email": email, "name": name }
+    ];
+    sendSmtpEmail.replyTo = from;
+
+  
     const data = await apiInstance.sendTransacEmail(sendSmtpEmail)
     return data
   } catch (error:any) {

@@ -1,7 +1,7 @@
 //https://nitro.unjs.io/config
 export default defineNitroConfig({
   srcDir: "server",
-  runtimeConfig: 
+  runtimeConfig:
   {
     brevoSecret: "",
     email: "",
